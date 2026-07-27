@@ -1,0 +1,500 @@
+# Instincts generated from https://github.com/antono4/awesome-llm-apps
+# Generated: 2026-07-27T08:46:35.074Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: awesome-llm-apps-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Commit Length
+
+## Action
+
+Write moderate-length commit messages (~55 characters)
+
+## Evidence
+
+- Average commit message length: 55 chars
+- Based on 2 commits
+
+---
+id: awesome-llm-apps-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Naming Files
+
+## Action
+
+Use snake_case naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: snake_case
+
+---
+id: awesome-llm-apps-import-alias
+trigger: "when importing modules"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Import Alias
+
+## Action
+
+Use path aliases (@/, ~/) instead of relative imports
+
+## Evidence
+
+- Import analysis shows alias pattern
+- Example: import { x } from '@/lib/x'
+
+---
+id: awesome-llm-apps-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Export Style
+
+## Action
+
+Prefer mixed exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: mixed
+
+---
+id: awesome-llm-apps-test-naming
+trigger: "when creating a test file"
+confidence: 0.85
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Test Naming
+
+## Action
+
+Name test files using the pattern: *_test.py
+
+## Evidence
+
+- File pattern: *_test.py
+- Consistent across test files
+
+---
+id: awesome-llm-apps-workflow-add-new-agent-app
+trigger: "when doing add new agent app"
+confidence: 0.65
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Workflow Add New Agent App
+
+## Action
+
+Follow the add-new-agent-app workflow:
+1. Create a new directory under the appropriate agent apps folder (e.g., advanced_ai_agents/autonomous_game_playing_agent_apps/ or advanced_ai_agents/multi_agent_apps/).
+2. Add main implementation file(s) (e.g., agent.py, app.py, or similar).
+3. Add requirements.txt for dependencies.
+4. Add README.md with usage/documentation.
+5. Optionally add tools.py, __init__.py, and other support files.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~3x per month
+- Files: advanced_ai_agents/**/README.md, advanced_ai_agents/**/requirements.txt, advanced_ai_agents/**/agent.py
+
+---
+id: awesome-llm-apps-workflow-add-new-multi-agent-team
+trigger: "when doing add new multi agent team"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Workflow Add New Multi Agent Team
+
+## Action
+
+Follow the add-new-multi-agent-team workflow:
+1. Create a new directory under advanced_ai_agents/multi_agent_apps/agent_teams/.
+2. Add main team implementation file(s) (e.g., <team_name>_team.py, agent.py, or similar).
+3. Add requirements.txt for dependencies.
+4. Add README.md with usage/documentation.
+5. Optionally add tools.py, __init__.py, and other support files.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: advanced_ai_agents/multi_agent_apps/agent_teams/*/README.md, advanced_ai_agents/multi_agent_apps/agent_teams/*/requirements.txt, advanced_ai_agents/multi_agent_apps/agent_teams/*/team.py
+
+---
+id: awesome-llm-apps-workflow-add-new-backend-and-frontend-app
+trigger: "when doing add new backend and frontend app"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Workflow Add New Backend And Frontend App
+
+## Action
+
+Follow the add-new-backend-and-frontend-app workflow:
+1. Create backend directory with main server code (e.g., main.py, app.py, api/).
+2. Add backend requirements.txt or pyproject.toml.
+3. Add backend Dockerfile and .env.example.
+4. Create frontend directory (e.g., client/ or frontend/) with Next.js/React app structure.
+5. Add frontend package.json, tsconfig.json, next.config.js, etc.
+6. Add frontend .env.example and .gitignore.
+7. Add README.md for documentation.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: **/backend/main.py, **/backend/app.py, **/backend/requirements.txt
+
+---
+id: awesome-llm-apps-workflow-add-database-schema-and-migrations
+trigger: "when doing add database schema and migrations"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Workflow Add Database Schema And Migrations
+
+## Action
+
+Follow the add-database-schema-and-migrations workflow:
+1. Edit or add schema definition files (e.g., schema.prisma, schema.sql, models/*.py).
+2. Generate migration files (e.g., prisma/migrations/*/migration.sql, migrations/*.sql).
+3. Update repository/model files as needed.
+4. Commit migration lock files if required.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: **/prisma/schema.prisma, **/prisma/migrations/*/migration.sql, **/migrations/*.sql
+
+---
+id: awesome-llm-apps-instinct-file-naming
+trigger: "When creating or renaming a Python file"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Instinct File Naming
+
+## Action
+
+Use snake_case for file names
+
+## Evidence
+
+- Pattern in files: advanced_ai_agents/**/agent.py, app.py, tools.py
+
+---
+id: awesome-llm-apps-instinct-function-naming
+trigger: "When defining a function in Python"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Instinct Function Naming
+
+## Action
+
+Use camelCase for function names
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.functions
+
+---
+id: awesome-llm-apps-instinct-class-naming
+trigger: "When defining a class in Python"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Instinct Class Naming
+
+## Action
+
+Use PascalCase for class names
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.classes
+
+---
+id: awesome-llm-apps-instinct-constant-naming
+trigger: "When defining a constant in Python"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Instinct Constant Naming
+
+## Action
+
+Use SCREAMING_SNAKE_CASE for constants
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.constants
+
+---
+id: awesome-llm-apps-instinct-import-alias
+trigger: "When importing modules in Python"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Instinct Import Alias
+
+## Action
+
+Use alias import style
+
+## Evidence
+
+- Pattern in codeStyle.importStyle
+
+---
+id: awesome-llm-apps-instinct-export-mixed
+trigger: "When exporting modules or functions"
+confidence: 0.6
+domain: code-style
+source: repo-analysis
+source_repo: antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Instinct Export Mixed
+
+## Action
+
+Allow both named and default exports
+
+## Evidence
+
+- Pattern in codeStyle.exportStyle
+
+---
+id: awesome-llm-apps-instinct-test-file-pattern
+trigger: "When creating a test file for Python code"
+confidence: 0.85
+domain: testing
+source: repo-analysis
+source_repo: antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Instinct Test File Pattern
+
+## Action
+
+Name the file with *_test.py suffix
+
+## Evidence
+
+- Pattern in testing.filePattern
+
+---
+id: awesome-llm-apps-instinct-unit-test-type
+trigger: "When writing tests"
+confidence: 0.7
+domain: testing
+source: repo-analysis
+source_repo: antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Instinct Unit Test Type
+
+## Action
+
+Write unit tests as the primary test type
+
+## Evidence
+
+- Pattern in testing.testTypes
+
+---
+id: awesome-llm-apps-instinct-commit-prefix-feat
+trigger: "When making a commit for a new feature"
+confidence: 0.9
+domain: git
+source: repo-analysis
+source_repo: antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Instinct Commit Prefix Feat
+
+## Action
+
+Prefix the commit message with 'feat:'
+
+## Evidence
+
+- Seen in commit: 'feat: Add AI Chat application - Modern LLM chat with multiple providers'
+
+---
+id: awesome-llm-apps-instinct-commit-length
+trigger: "When writing a commit message"
+confidence: 0.7
+domain: git
+source: repo-analysis
+source_repo: antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Instinct Commit Length
+
+## Action
+
+Keep the commit message concise (around 55 characters on average)
+
+## Evidence
+
+- Pattern in commits.averageLength
+
+---
+id: awesome-llm-apps-instinct-add-new-agent-app
+trigger: "When someone wants to contribute a new AI agent app"
+confidence: 0.95
+domain: workflow
+source: repo-analysis
+source_repo: antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Instinct Add New Agent App
+
+## Action
+
+Create a directory under advanced_ai_agents/, add agent.py/app.py, requirements.txt, README.md, and optionally tools.py, __init__.py
+
+## Evidence
+
+- Workflow: add-new-agent-app
+- Pattern in files: advanced_ai_agents/**/agent.py, app.py, README.md
+
+---
+id: awesome-llm-apps-instinct-add-new-multi-agent-team
+trigger: "When someone wants to contribute a new multi-agent team"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Instinct Add New Multi Agent Team
+
+## Action
+
+Create a directory under advanced_ai_agents/multi_agent_apps/agent_teams/, add team.py, agent.py, requirements.txt, README.md, and optionally tools.py, __init__.py
+
+## Evidence
+
+- Workflow: add-new-multi-agent-team
+- Pattern in files: advanced_ai_agents/multi_agent_apps/agent_teams/*/team.py
+
+---
+id: awesome-llm-apps-instinct-add-new-backend-and-frontend-app
+trigger: "When someone wants to contribute a new full-stack agent app with backend and frontend"
+confidence: 0.85
+domain: workflow
+source: repo-analysis
+source_repo: antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Instinct Add New Backend And Frontend App
+
+## Action
+
+Create backend (main.py/app.py, requirements.txt, Dockerfile, .env.example) and frontend (package.json, tsconfig.json, next.config.js, .env.example, .gitignore) directories, and add README.md
+
+## Evidence
+
+- Workflow: add-new-backend-and-frontend-app
+- Pattern in files: **/backend/main.py, **/client/package.json, **/frontend/package.json
+
+---
+id: awesome-llm-apps-instinct-add-database-schema-and-migrations
+trigger: "When someone wants to add or update database schema"
+confidence: 0.85
+domain: workflow
+source: repo-analysis
+source_repo: antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Instinct Add Database Schema And Migrations
+
+## Action
+
+Edit schema files (schema.prisma, models/*.py), generate migration files, update repository/model files, and commit migration lock files if needed
+
+## Evidence
+
+- Workflow: add-database-schema-and-migrations
+- Pattern in files: **/prisma/schema.prisma, **/models/*.py
+
+---
+id: awesome-llm-apps-instinct-error-handling-try-catch
+trigger: "When handling errors in Python code"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: antono4/awesome-llm-apps
+---
+
+# Awesome Llm Apps Instinct Error Handling Try Catch
+
+## Action
+
+Use try-catch (try-except) blocks for error handling
+
+## Evidence
+
+- Pattern in errorHandling.style
+
