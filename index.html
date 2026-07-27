@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome LLM Apps - 100+ Open Source AI Agents</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg: #0a0a0f;
+            --bg-card: #111118;
+            --bg-card-hover: #1a1a24;
+            --text: #ffffff;
+            --text-secondary: #a1a1aa;
+            --border: #27272a;
+            --accent-green: #22c55e;
+            --accent-blue: #3b82f6;
+            --accent-purple: #a855f7;
+            --accent-orange: #f97316;
+            --accent-pink: #ec4899;
+            --accent-cyan: #06b6d4;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 60px 0 40px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .badges {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .badge {
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .badge.highlight {
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            border: none;
+            color: white;
+        }
+
+        /* Search */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 24px 16px 56px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            font-size: 1rem;
+            color: var(--text);
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        /* Filter Pills */
+        .filter-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+            padding: 0 20px;
+        }
+
+        .filter-pill {
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .filter-pill:hover {
+            background: var(--bg-card-hover);
+            color: var(--text);
+        }
+
+        .filter-pill.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Category Section */
+        .category {
+            margin-bottom: 60px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .category-icon {
+            font-size: 1.5rem;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .category-description {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-left: auto;
+        }
+
+        /* Apps Grid */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .app-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .app-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .app-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .app-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .app-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .app-external {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .app-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .app-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .app-tag {
+            padding: 4px 10px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: var(--primary);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-description {
+                display: none;
+            }
+
+            .stats {
+                gap: 24px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .app-card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span>⚡</span> Curated Collection
+            </div>
+            <h1>Awesome LLM Apps</h1>
+            <p class="subtitle">100+ open-source AI agents, agent skills, and RAG apps. Hand-built, tested end-to-end, Apache-2.0.</p>
+            <div class="badges">
+                <span class="badge highlight">100+ Templates</span>
+                <span class="badge">Claude</span>
+                <span class="badge">Gemini</span>
+                <span class="badge">GPT</span>
+                <span class="badge">DeepSeek</span>
+                <span class="badge">Llama</span>
+            </div>
+            <div class="search-container">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="M21 21l-4.35-4.35"></path>
+                </svg>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search 100+ AI agents and apps...">
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">AI Agents</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">Apache-2.0</div>
+                <div class="stat-label">License</div>
+            </div>
+        </div>
+
+        <div class="filter-container" id="filterContainer">
+            <button class="filter-pill active" data-filter="all">All</button>
+            <button class="filter-pill" data-filter="agent-skills">🧩 Agent Skills</button>
+            <button class="filter-pill" data-filter="starter">🌱 Starter</button>
+            <button class="filter-pill" data-filter="advanced">🚀 Advanced</button>
+            <button class="filter-pill" data-filter="always-on">🛰️ Always-on</button>
+            <button class="filter-pill" data-filter="multi-agent">🤝 Multi-agent</button>
+            <button class="filter-pill" data-filter="voice">🗣️ Voice</button>
+            <button class="filter-pill" data-filter="generative-ui">🖼️ Gen UI</button>
+            <button class="filter-pill" data-filter="game">🎮 Game</button>
+            <button class="filter-pill" data-filter="mcp">♾️ MCP</button>
+            <button class="filter-pill" data-filter="rag">📀 RAG</button>
+            <button class="filter-pill" data-filter="memory">💾 Memory</button>
+            <button class="filter-pill" data-filter="chat">💬 Chat</button>
+            <button class="filter-pill" data-filter="tools">🎯 Tools</button>
+            <button class="filter-pill" data-filter="finetuning">🔧 Fine-tune</button>
+            <button class="filter-pill" data-filter="courses">🧑‍🏫 Courses</button>
+        </div>
+
+        <div id="categoriesContainer"></div>
+
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <h3>No results found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Built with ❤️ from <a href="https://github.com/Shubhamsaboo/awesome-llm-apps" target="_blank">awesome-llm-apps</a></p>
+            <p style="margin-top: 12px; font-size: 0.875rem;">Clone it, ship it, sell it - 100% free and open-source</p>
+        </div>
+    </footer>
+
+    <script>
+        const categories = [
+            {
+                id: 'agent-skills',
+                name: 'Agent Skills',
+                icon: '🧩',
+                description: 'Give your coding agent new abilities',
+                apps: [
+                    { name: '⚰️ Project Graveyard', description: 'Finds every side project you abandoned, tells you why each one died, and helps you finish the one worth going back to', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/agent_skills/project-graveyard' },
+                    { name: '🔭 Scope Creep Detector', description: 'Checks whether a diff grew beyond its stated intent and recommends what to keep, split, or justify', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/agent_skills/scope-creep-detector' },
+                    { name: '🏺 Commit Archaeologist', description: 'Reconstructs why a file or code region exists from its introducing commit, later edits, co-changes, and intent clues', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/agent_skills/commit-archaeologist' },
+                    { name: '🧠 Advisor Orchestrator Worker', description: 'Meta Loop with Claude Fable 5 as advisor, GPT-5.6 as orchestrator, and Gemini 3.5 Flash as worker', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/agent_skills/advisor-orchestrator-worker' },
+                    { name: '♾️ Self-Improving Agent Skills', description: 'Automatically optimize agent skills using Gemini and ADK', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/agent_skills/self-improving-agent-skills' }
+                ]
+            },
+            {
+                id: 'starter',
+                name: 'Starter AI Agents',
+                icon: '🌱',
+                description: 'Single-file agents that run with just an API key',
+                apps: [
+                    { name: '🎙️ AI Blog to Podcast Agent', description: 'Turn any blog URL into a narrated podcast episode', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/starter_ai_agents/ai_blog_to_podcast_agent' },
+                    { name: '❤️‍🩹 AI Breakup Recovery Agent', description: 'An agent team that talks you through the post-breakup spiral', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/starter_ai_agents/ai_breakup_recovery_agent' },
+                    { name: '📊 AI Data Analysis Agent', description: 'Ask questions of any CSV or Excel file in plain English', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/starter_ai_agents/ai_data_analysis_agent' },
+                    { name: '🩻 AI Medical Imaging Agent', description: 'Diagnostic analysis of X-rays and scans with Gemini', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/starter_ai_agents/ai_medical_imaging_agent' },
+                    { name: '😂 AI Meme Generator Agent', description: 'Makes memes by driving a real browser, not an image API', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/starter_ai_agents/ai_meme_generator_agent_browseruse' },
+                    { name: '🎵 AI Music Generator Agent', description: 'Prompt in, MP3 track out', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/starter_ai_agents/ai_music_generator_agent' },
+                    { name: '🛫 AI Travel Agent', description: 'Personalized day-by-day travel itineraries', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/starter_ai_agents/ai_travel_agent' },
+                    { name: '✨ Gemini Multimodal Agent', description: 'Video analysis plus web search in one agent', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/starter_ai_agents/multimodal_ai_agent' },
+                    { name: '🔄 Mixture of Agents', description: 'Multiple LLMs answer, one aggregates the best response', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/starter_ai_agents/mixture_of_agents' },
+                    { name: '📊 xAI Finance Agent', description: 'Real-time stock analysis powered by Grok', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/starter_ai_agents/xai_finance_agent' },
+                    { name: '🔍 OpenAI Research Agent', description: 'Multi-agent topic research with the OpenAI Agents SDK', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/starter_ai_agents/openai_research_agent' },
+                    { name: '🕸️ Web Scraping AI Agent', description: 'Describe what to extract and the agent scrapes it', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/starter_ai_agents/web_scraping_ai_agent' }
+                ]
+            },
+            {
+                id: 'advanced',
+                name: 'Advanced AI Agents',
+                icon: '🚀',
+                description: 'Production-style agents with tools, memory, and multi-step reasoning',
+                apps: [
+                    { name: '🏚️ AI Home Renovation Agent', description: 'Photos of your space in, renovation plan and photorealistic renders out', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/multi_agent_apps/ai_home_renovation_agent' },
+                    { name: '🧠 DevPulse AI', description: 'Aggregates and scores technical signals into a daily intelligence digest', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/multi_agent_apps/devpulse_ai' },
+                    { name: '🔍 AI Deep Research Agent', description: 'Comprehensive web research with the OpenAI Agents SDK and Firecrawl', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/single_agent_apps/ai_deep_research_agent' },
+                    { name: '📊 AI VC Due Diligence Agent Team', description: 'Multi-agent startup investment analysis with Gemini 3', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/multi_agent_apps/agent_teams/ai_vc_due_diligence_agent_team' },
+                    { name: '🔬 AI Research Planner & Executor', description: 'Multi-phase research with stateful conversations and auto-generated infographics', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/single_agent_apps/research_agent_gemini_interaction_api' },
+                    { name: '🤝 AI Consultant Agent', description: 'Market analysis and strategy recommendations with live web research', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/single_agent_apps/ai_consultant_agent' },
+                    { name: '🏗️ AI System Architect Agent', description: 'Architecture reviews using DeepSeek R1 reasoning plus Claude', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/single_agent_apps/ai_system_architect_r1' },
+                    { name: '💰 AI Financial Coach Agent', description: 'Personalized budget, debt, and savings analysis', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/multi_agent_apps/ai_financial_coach_agent' },
+                    { name: '🎬 AI Movie Production Agent', description: 'Script drafts and casting ideas from a one-line movie concept', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/single_agent_apps/ai_movie_production_agent' },
+                    { name: '📈 AI Investment Agent', description: 'Stock comparison reports built on Yahoo Finance data', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/single_agent_apps/ai_investment_agent' },
+                    { name: '📡 Earnings Call Analyst Agent', description: 'Turns YouTube earnings calls into a playback-synced analyst workspace', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/single_agent_apps/earnings_call_analyst_agent' },
+                    { name: '🏋️‍♂️ AI Health & Fitness Agent', description: 'Tailored diet and workout plans from your goals', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/single_agent_apps/ai_health_fitness_agent' },
+                    { name: '🚀 AI Product Launch Intelligence Agent', description: 'Go-to-market intelligence on competitor launches', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/multi_agent_apps/product_launch_intelligence_agent' },
+                    { name: '🔍 AI Fraud Investigation Agent', description: 'Cross-references public records to flag facilities that do not add up', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/single_agent_apps/ai_fraud_investigation_agent' },
+                    { name: '🗞️ AI Journalist Agent', description: 'Researches, writes, and edits articles on any topic', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/single_agent_apps/ai_journalist_agent' },
+                    { name: '🧠 AI Mental Wellbeing Agent', description: 'A coordinated agent team for mental health support plans', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/multi_agent_apps/ai_mental_wellbeing_agent' },
+                    { name: '📑 AI Meeting Agent', description: 'Context, industry insights, and strategy briefs before you walk in', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/single_agent_apps/ai_meeting_agent' },
+                    { name: '🧬 AI Self-Evolving Agent', description: 'Agents that rewrite their own workflows with EvoAgentX', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/multi_agent_apps/ai_self_evolving_agent' },
+                    { name: '👨🏻‍💼 AI Sales Intelligence Agent Team', description: 'Generates competitive sales battle cards in real time', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/multi_agent_apps/agent_teams/ai_sales_intelligence_agent_team' },
+                    { name: '🎧 AI Social Media News and Podcast Agent', description: 'Curates your trusted sources into briefs and generated podcasts', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/multi_agent_apps/ai_news_and_podcast_agents' },
+                    { name: '🌐 Openwork', description: 'Open-source agent that operates a real browser', link: 'https://github.com/accomplish-ai/openwork', external: true },
+                    { name: '🛡️ Trust-Gated Multi-Agent Research Team', description: 'Every agent verified, every action in a hash-chained audit trail', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_ai_agents/multi_agent_apps/trust_gated_agent_team' }
+                ]
+            },
+            {
+                id: 'always-on',
+                name: 'Always-on Agents',
+                icon: '🛰️',
+                description: 'Background agents that run on schedules or events',
+                apps: [
+                    { name: '📰 Always-on Hacker News Briefing Agent', description: 'A scheduled scout that ships a ranked daily brief to Slack or email', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/always_on_agents/always_on_hn_briefing_agent' },
+                    { name: '📡 Release Radar Agent', description: 'Watches dependency releases and briefs you on breaking, deprecated, security, and major-version changes', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/always_on_agents/release_radar_agent' },
+                    { name: '📞 Insurance Claim Live Agent Team', description: 'Real-time voice claim intake with Gemini Live', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/voice_ai_agents/insurance_claim_live_agent_team' }
+                ]
+            },
+            {
+                id: 'multi-agent',
+                name: 'Multi-agent Teams',
+                icon: '🤝',
+                description: 'Multiple agents collaborating to accomplish complex tasks',
+                apps: [
+                    { name: '🧲 AI Competitor Intelligence Agent Team', description: 'Structured competitor teardowns built from their own websites', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/multi_agent_apps/ai_competitor_intelligence_agent_team' },
+                    { name: '💲 AI Finance Agent Team', description: 'A financial analyst team in 20 lines of Python', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/multi_agent_apps/ai_finance_agent_team' },
+                    { name: '🎨 AI Game Design Agent Team', description: 'Full game concepts from a swarm of design specialists', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/multi_agent_apps/ai_game_design_agent_team' },
+                    { name: '🧭 AG2 Adaptive Research Team', description: 'Agent teamwork with routing and fallback, built on AG2', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/multi_agent_apps/ag2_adaptive_research_team' },
+                    { name: '👨‍⚖️ AI Legal Agent Team', description: 'Research, contract analysis, and strategy from a full legal bench', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/multi_agent_apps/ai_legal_agent_team' },
+                    { name: '💼 AI Recruitment Agent Team', description: 'Resume screening to interview scheduling, end to end', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/multi_agent_apps/ai_recruitment_agent_team' },
+                    { name: '🏠 AI Real Estate Agent Team', description: 'Property search, market analysis, and recommendations', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/multi_agent_apps/ai_real_estate_agent_team' },
+                    { name: '👨‍💼 AI Services Agency', description: 'A digital agency that scopes and plans your software project', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/multi_agent_apps/ai_services_agency' },
+                    { name: '👨‍🏫 AI Teaching Agent Team', description: 'A faculty of agents that builds your complete learning path', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/multi_agent_apps/ai_teaching_agent_team' },
+                    { name: '💻 Multimodal Coding Agent Team', description: 'Snap a photo of a coding problem, get a sandboxed solution', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/multi_agent_apps/multimodal_coding_agent_team' },
+                    { name: '✨ Multimodal Design Agent Team', description: 'Design critiques from a Gemini-powered expert panel', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/multi_agent_apps/multimodal_design_agent_team' },
+                    { name: '🎨 Multimodal UI/UX Feedback Agent Team', description: 'Landing page feedback plus an auto-generated improved version', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/multi_agent_apps/multimodal_ui_ux_feedback_agent_team' },
+                    { name: '🌏 AI Travel Planner Agent Team', description: 'A complete trip itinerary, crafted by a team', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/multi_agent_apps/ai_travel_planner_agent_team' }
+                ]
+            },
+            {
+                id: 'voice',
+                name: 'Voice AI Agents',
+                icon: '🗣️',
+                description: 'Speech-in, speech-out agents using real-time voice APIs',
+                apps: [
+                    { name: '🗣️ AI Audio Tour Agent', description: 'Self-guided audio tours from your location, interests, and pace', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/voice_ai_agents/audio_tour_agent' },
+                    { name: '📞 Customer Support Voice Agent', description: 'Voice answers grounded in your own docs', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/voice_ai_agents/customer_support_voice_agent' },
+                    { name: '🔊 Voice RAG Agent', description: 'Ask your PDFs questions, hear the answers', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/voice_ai_agents/voice_rag_agent' },
+                    { name: '🎙️ OpenSource Voice Dictation Agent', description: 'Open-source dictation that types where you talk', link: 'https://github.com/AnthropicAK/flow-voice', external: true }
+                ]
+            },
+            {
+                id: 'generative-ui',
+                name: 'Generative UI and Agentic Frontends',
+                icon: '🖼️',
+                description: 'Agents that render interactive UI components, not just text',
+                apps: [
+                    { name: '🗂️ Generative UI Starter Project', description: 'A chat-driven kanban board you and the agent work together', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/generative_ui_agents/generative_ui_starter' },
+                    { name: '💰 AI Financial Coach Agent', description: 'Budget, savings, and debt plans rendered as interactive cards', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/generative_ui_agents/ai_financial_coach_generative_ui' },
+                    { name: '📊 AI Dashboard Canvas Agent', description: 'Describe a dashboard in chat, charts assemble on a live canvas', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/generative_ui_agents/ai_dashboard_canvas_agent' },
+                    { name: '🛠️ AI MCP App Builder', description: 'Describe an MCP app, get a live sandboxed instance back', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/generative_ui_agents/ai_mcp_app_builder' },
+                    { name: '✈️ MCP Apps Generative UI Showcase', description: 'MCP apps that render real interactive UI, flight search included', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/generative_ui_agents/mcp_apps_generative_ui_showcase' },
+                    { name: '🎛️ AI Shadcn Component Generator', description: 'Chat your way to production-ready shadcn components', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/generative_ui_agents/ai_shadcn_component_generator' },
+                    { name: '🔍 AI Deep Research Agent', description: 'Research where every tool call renders as a live workspace card', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/generative_ui_agents/ai_deep_research_generative_ui' }
+                ]
+            },
+            {
+                id: 'game',
+                name: 'Autonomous Game-Playing Agents',
+                icon: '🎮',
+                description: 'Agents that play games end-to-end: reasoning, strategy, and action',
+                apps: [
+                    { name: '🎮 AI 3D Pygame Agent', description: 'DeepSeek R1 writes PyGame code, browser agents run it live', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/ai_agent_games/ai_3d_pygame_agent' },
+                    { name: '♜ AI Chess Agent', description: 'Agent White vs Agent Black with validated moves', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/ai_agent_games/ai_chess_agent' },
+                    { name: '🎲 AI Tic-Tac-Toe Agent', description: 'Two different LLMs battle it out, move by move', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/ai_agent_games/ai_tictactoe_agent' }
+                ]
+            },
+            {
+                id: 'mcp',
+                name: 'MCP AI Agents',
+                icon: '♾️',
+                description: 'Agents that connect to external tools and data via Model Context Protocol',
+                apps: [
+                    { name: '🐙 Browser MCP Agent', description: 'Drive a real browser with natural language over MCP', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/mcp_ai_agents/browser_mcp_agent' },
+                    { name: '🐙 GitHub MCP Agent', description: 'Explore and analyze any repo in plain English', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/mcp_ai_agents/github_mcp_agent' },
+                    { name: '📑 Notion MCP Agent', description: 'Talk to your Notion pages from the terminal', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/mcp_ai_agents/notion_mcp_agent' },
+                    { name: '🌍 AI Travel Planner MCP Agent', description: 'Itineraries built on live Airbnb and Google Maps data', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/mcp_ai_agents/travel_planner_mcp_agent' },
+                    { name: '🔀 Multi-MCP Agent Router', description: 'Specialist agents, each wired to its own MCP server', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/mcp_ai_agents/multi_mcp_agent' }
+                ]
+            },
+            {
+                id: 'rag',
+                name: 'RAG (Retrieval Augmented Generation)',
+                icon: '📀',
+                description: 'Retrieval pipelines, from simple chains to agentic and multi-source',
+                apps: [
+                    { name: '🔥 Agentic RAG with Embedding Gemma', description: 'Fully local agentic RAG with EmbeddingGemma and Llama 3.2', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/agentic_rag_with_embedding_gemma' },
+                    { name: '🧐 Agentic RAG with Reasoning', description: "Watch the agent's step-by-step reasoning as it retrieves", link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/agentic_rag_with_reasoning' },
+                    { name: '📰 AI Blog Search', description: 'Agentic search over blog content, built on LangGraph', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/ai_blog_search_rag' },
+                    { name: '🔍 Autonomous RAG', description: 'GPT-4o answers from your PDFs, falls back to web search', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/autonomous_rag' },
+                    { name: '🔄 Contextual AI RAG Agent', description: 'Managed RAG: datastore to grounded chat in minutes', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/contextual_ai_rag_agent' },
+                    { name: '🔄 Corrective RAG (CRAG)', description: 'Retrieval that grades itself and retries before answering', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/corrective_rag' },
+                    { name: '📎 Typed Agentic RAG with Pydantic AI', description: 'Validated answers with exact citations, or a refusal when evidence is weak', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/typed_agentic_rag' },
+                    { name: '🐋 Deepseek Local RAG Agent', description: 'Local DeepSeek reasoning over your own documents', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/deepseek_local_rag_agent' },
+                    { name: '🤔 Gemini Agentic RAG', description: 'Query rewriting and web fallback with Gemini Flash Thinking', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/gemini_agentic_rag' },
+                    { name: '👀 Hybrid Search RAG', description: 'Keyword plus vector search feeding Claude', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/hybrid_search_rag' },
+                    { name: '🔄 Llama 3.1 Local RAG', description: 'Chat with any webpage, fully offline', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/llama_local_rag' },
+                    { name: '🖥️ Local Hybrid Search RAG', description: 'Hybrid search with everything running on your machine', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/local_hybrid_search_rag' },
+                    { name: '🧬 Multimodal Agentic RAG', description: 'Text, PDFs, images, audio, and video, answered with citations', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/multimodal_agentic_rag' },
+                    { name: '🦙 Local RAG Agent', description: 'Llama 3.2 and Qdrant, no API keys required', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/local_rag_agent' },
+                    { name: '🧩 RAG-as-a-Service', description: 'A production RAG service in under 50 lines', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/rag_as_a_service' },
+                    { name: '✨ RAG Agent with Cohere', description: 'Command R7B retrieval with web-search fallback', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/rag_with_cohere' },
+                    { name: '⛓️ Basic RAG Chain', description: 'The minimal retrieval pipeline, applied to pharma research', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/basic_rag_chain' },
+                    { name: '📠 RAG with Database Routing', description: 'Routes each question to the right database automatically', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/rag_with_database_routing' },
+                    { name: '🖼️ Vision RAG', description: 'Ask questions about images and PDF pages with Embed-4', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/vision_rag' },
+                    { name: '🩺 RAG Failure Diagnostics Clinic', description: 'Find out why your RAG pipeline is wrong, systematically', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/rag_failure_diagnostics' },
+                    { name: '🕸️ Knowledge Graph RAG with Citations', description: 'Multi-hop answers with verifiable source attribution', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/rag_tutorials/knowledge_graph_rag' }
+                ]
+            },
+            {
+                id: 'memory',
+                name: 'LLM Apps with Memory',
+                icon: '💾',
+                description: 'Agents and chatbots that remember conversations and user state across sessions',
+                apps: [
+                    { name: '📚 AI ArXiv Agent with Memory', description: 'Paper search that remembers your research interests', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/ai_arxiv_agent_with_memory' },
+                    { name: '🛩️ AI Travel Agent with Memory', description: 'A travel assistant that remembers your preferences', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/ai_travel_agent_with_memory' },
+                    { name: '💬 Llama3 Stateful Chat', description: 'Session-persistent chat with Llama 3', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/llama3_stateful_chat' },
+                    { name: '📝 LLM App with Personalized Memory', description: 'A chatbot that keeps context across conversations', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/llm_app_with_memory' },
+                    { name: '🗄️ Local ChatGPT Clone with Memory', description: 'Fully local, with a personal memory per user', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/local_chatgpt_clone_with_memory' },
+                    { name: '🧠 Multi-LLM Application with Shared Memory', description: 'Different models, one shared conversation memory', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/multi_llm_app_with_shared_memory' }
+                ]
+            },
+            {
+                id: 'chat',
+                name: 'Chat with X',
+                icon: '💬',
+                description: 'Turn any data source into a chat interface',
+                apps: [
+                    { name: '💬 Chat with GitHub', description: 'Any repo, answered in 30 lines of RAG', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/chat_with_github' },
+                    { name: '📨 Chat with Gmail', description: 'Ask your inbox questions', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/chat_with_gmail' },
+                    { name: '📄 Chat with PDF', description: 'The classic, in 30 lines of Python', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/chat_with_pdf' },
+                    { name: '📚 Chat with Research Papers (ArXiv)', description: 'Explore arXiv conversationally with GPT-4o', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/chat_with_arxiv' },
+                    { name: '📝 Chat with Substack', description: 'Chat with any newsletters archive', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/chat_with_substack' },
+                    { name: '📽️ Chat with YouTube Videos', description: 'Ask videos questions via their transcripts', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/chat_with_youtube' }
+                ]
+            },
+            {
+                id: 'tools',
+                name: 'LLM Optimization Tools',
+                icon: '🎯',
+                description: 'Reduce token usage, context size, and API cost without losing quality',
+                apps: [
+                    { name: '🎨 Toonify Token Optimization', description: 'Reduce LLM API costs by 30-60% using TOON format', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/toonify_token_optimization' },
+                    { name: '🧠 Headroom Context Optimization', description: 'Reduce LLM API costs by 50-90%', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/headroom_context_optimization' }
+                ]
+            },
+            {
+                id: 'finetuning',
+                name: 'LLM Fine-tuning',
+                icon: '🔧',
+                description: 'End-to-end fine-tuning recipes for open-source models',
+                apps: [
+                    { name: '🦥 Gemma 3 Fine-tuning', description: '4-bit LoRA with Unsloth, small and readable', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/gemma_finetuning' },
+                    { name: '🦙 Llama 3.2 Fine-tuning', description: 'Fine-tune in 30 lines, free on Colab', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/llama_finetuning' }
+                ]
+            },
+            {
+                id: 'courses',
+                name: 'AI Agent Framework Crash Courses',
+                icon: '🧑‍🏫',
+                description: 'Deep-dive tutorials on the major agent frameworks',
+                apps: [
+                    { name: 'Google ADK Crash Course', description: 'Starter agent, structured outputs, tools, memory, callbacks, plugins, and multi-agent patterns', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/ai_agent_framework_crash_course/google_adk_crash_course' },
+                    { name: 'OpenAI Agents SDK Crash Course', description: 'Starter agent, function calling, structured outputs, tools, memory, evaluation, handoffs, swarm orchestration, and routing logic', link: 'https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/ai_agent_framework_crash_course/openai_agents_sdk_crash_course' }
+                ]
+            }
+        ];
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        function renderCategories() {
+            const container = document.getElementById('categoriesContainer');
+            container.innerHTML = '';
+
+            let totalApps = 0;
+            let hasResults = false;
+
+            categories.forEach((category, catIndex) => {
+                const filteredApps = category.apps.filter(app => {
+                    const matchesFilter = currentFilter === 'all' || category.id === currentFilter;
+                    const matchesSearch = searchQuery === '' || 
+                        app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        app.description.toLowerCase().includes(searchQuery.toLowerCase());
+                    return matchesFilter && matchesSearch;
+                });
+
+                if (filteredApps.length === 0) return;
+                
+                hasResults = true;
+                totalApps += filteredApps.length;
+
+                const categoryEl = document.createElement('div');
+                categoryEl.className = 'category';
+                categoryEl.style.animationDelay = `${catIndex * 0.1}s`;
+
+                categoryEl.innerHTML = `
+                    <div class="category-header">
+                        <span class="category-icon">${category.icon}</span>
+                        <h2 class="category-title">${category.name}</h2>
+                        <span class="category-description">${category.description}</span>
+                    </div>
+                    <div class="apps-grid">
+                        ${filteredApps.map((app, index) => `
+                            <a href="${app.link}" target="_blank" class="app-card" style="animation-delay: ${(catIndex * 0.1) + (index * 0.05)}s">
+                                <div class="app-header">
+                                    <div class="app-icon">${category.icon}</div>
+                                    <div class="app-info">
+                                        <div class="app-name">
+                                            ${app.name}
+                                            ${app.external ? '<span class="app-external">↗</span>' : ''}
+                                        </div>
+                                        <p class="app-description">${app.description}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        `).join('')}
+                    </div>
+                `;
+
+                container.appendChild(categoryEl);
+            });
+
+            document.getElementById('emptyState').style.display = hasResults ? 'none' : 'block';
+            
+            // Update total count
+            const totalCount = categories.reduce((sum, cat) => sum + cat.apps.length, 0);
+            document.querySelector('.stat-number').textContent = totalApps + '+';
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderCategories();
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                currentFilter = pill.dataset.filter;
+                renderCategories();
+            });
+        });
+
+        // Initial render
+        renderCategories();
+    </script>
+</body>
+</html>
