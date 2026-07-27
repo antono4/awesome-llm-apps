@@ -1,0 +1,46 @@
+# Environment
+.env
+.env.local
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Byte-compiled / optimized / DLL files
+*.egg-info/
+dist/
+build/
+
+# Node (if any)
+node_modules/
+package-lock.json
+
+# Docker
+.docker/
+
+# Misc
+*.tmp
+*.bak
