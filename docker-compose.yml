@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # AI Chat Backend
+  backend:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - FLASK_ENV=development
+    volumes:
+      - .:/app
+    depends_on:
+      - ollama
+    networks:
+      - ai-network
+
+  # Ollama for local models
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - ai-network
+    # Uncomment to enable GPU support
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+networks:
+  ai-network:
+    driver: bridge
+
+volumes:
+  ollama-data:
