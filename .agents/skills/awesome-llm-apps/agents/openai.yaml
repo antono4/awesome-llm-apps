@@ -1,0 +1,6 @@
+interface:
+  display_name: "Awesome Llm Apps"
+  short_description: "Repo-specific patterns and workflows for awesome-llm-apps"
+  default_prompt: "Use the awesome-llm-apps repo skill to follow existing architecture, testing, and workflow conventions."
+policy:
+  allow_implicit_invocation: true
