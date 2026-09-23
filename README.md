@@ -11,7 +11,7 @@
   <a href="https://github.com/antono4/awesome-llm-apps"><img alt="GitHub repo" src="https://img.shields.io/badge/GitHub-antono4/awesome-llm-apps-blue?logo=github"></a>
   <a href="https://antono4.github.io/awesome-llm-apps/"><img alt="Live Demo" src="https://img.shields.io/badge/Live%20Demo-Online-success?logo=githubpages"></a>
   <img alt="Files" src="https://img.shields.io/badge/Files-1797-informational">
-  <img alt="Updated" src="https://img.shields.io/badge/Updated-2026-09-23 16:53:31 WIB-lightgrey">
+  <img alt="Updated" src="https://img.shields.io/badge/Updated-2026-09-23 21:52:58 WIB-lightgrey">
 </p>
 
 ---
@@ -65,5 +65,4 @@ Lihat berkas [`LICENSE`](./LICENSE) untuk informasi lisensi.
 
 ---
 
-<sub>README ini di-generate otomatis pada **2026-09-23 16:53:31 WIB** oleh GitHub Actions `.github/workflows/generate-readme.yml`.</sub>
-Last updated: 2026-09-23 19:58:48 WIB
+<sub>README ini di-generate otomatis pada **2026-09-23 21:52:58 WIB** oleh GitHub Actions `.github/workflows/generate-readme.yml`.</sub>
